@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>間食ボタン</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .emoji {
+            font-size: 4em;
+            margin: 20px 0;
+            display: block;
+        }
+
+        p {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .snack-button {
+            background: #1DA1F2;
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.3em;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(29, 161, 242, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .snack-button:hover {
+            background: #1a8cd8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(29, 161, 242, 0.6);
+        }
+
+        .snack-button:active {
+            transform: translateY(0);
+        }
+
+        .twitter-icon {
+            font-size: 1.2em;
+        }
+
+        .info {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .info p {
+            font-size: 0.9em;
+            color: #999;
+            margin: 5px 0;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 30px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .emoji {
+                font-size: 3em;
+            }
+
+            .snack-button {
+                padding: 15px 40px;
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>間食ボタン</h1>
+        <span class="emoji">🍪🍫🍩</span>
+        <p>間食しちゃった？<br>このボタンを押してTwitterに記録しよう！</p>
+        
+        <button class="snack-button" onclick="tweetSnack()">
+            <span class="twitter-icon">🐦</span>
+            <span>間食したことをツイート</span>
+        </button>
+
+        <div class="info">
+            <p>※ボタンを押すとTwitterの投稿画面が開きます</p>
+            <p>投稿内容は自由に編集できます</p>
+        </div>
+    </div>
+
+    <script>
+        function tweetSnack() {
+            // 現在の日時を取得
+            const now = new Date();
+            const date = now.toLocaleDateString('ja-JP', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            const time = now.toLocaleTimeString('ja-JP', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            });
+
+            // ツイート内容
+            const tweetText = `🍪 間食しました！\n${date} ${time}\n\n#間食記録 #間食ボタン`;
+
+            // Twitter Web Intentを使用して投稿画面を開く
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+            window.open(twitterUrl, '_blank', 'width=550,height=420');
+        }
+    </script>
+</body>
+</html>
