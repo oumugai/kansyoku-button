@@ -3,7 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>間食ボタン</title>
+    <title>間食ボタン - 間食をTwitterで記録しよう</title>
+    <meta name="description" content="間食したことをボタン一つでTwitterに記録できるWebサービスです。">
+    
+    <!-- OGP Tags -->
+    <meta property="og:title" content="間食ボタン - 間食をTwitterで記録しよう">
+    <meta property="og:description" content="間食したことをボタン一つでTwitterに記録できるWebサービスです。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kansyoku-button.ougai-buturi-14142.workers.dev/">
+    <meta property="og:image" content="ogp-image.png">
+    <meta property="og:site_name" content="間食ボタン">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="間食ボタン - 間食をTwitterで記録しよう">
+    <meta name="twitter:description" content="間食したことをボタン一つでTwitterに記録できるWebサービスです。">
+    <meta name="twitter:image" content="ogp-image.png">
     <style>
         * {
             margin: 0;
@@ -133,18 +148,21 @@
         function tweetSnack() {
             // 現在の日時を取得
             const now = new Date();
-            const date = now.toLocaleDateString('ja-JP', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
+            const date = now.toLocaleDateString('ja-JP', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
             });
-            const time = now.toLocaleTimeString('ja-JP', { 
-                hour: '2-digit', 
-                minute: '2-digit' 
+            const time = now.toLocaleTimeString('ja-JP', {
+                hour: '2-digit',
+                minute: '2-digit'
             });
 
+            // サービスのURL（実際のURLに変更してください）
+            const serviceUrl = 'https://your-domain.com/';
+
             // ツイート内容
-            const tweetText = `🍪 間食しました！\n${date} ${time}\n\n#間食記録 #間食ボタン`;
+            const tweetText = `🍪 間食しました！\n${date} ${time}\n\n#間食記録 #間食ボタン\n\n${serviceUrl}`;
 
             // Twitter Web Intentを使用して投稿画面を開く
             const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
